@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
         })
         .catch(function (err) {
             // Crawling failed...
-            res.send(err);
+            res.send({"error": err.message});
         });
 
 
