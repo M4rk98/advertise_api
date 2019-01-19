@@ -5,7 +5,6 @@ const users = require('../users');
 
 router.post('/', (req, res, next) => {
 
-    const content = req.body.email;
     const user = users.find( user => user.id == req.headers["id"] );
 
     const options = {
@@ -19,22 +18,14 @@ router.post('/', (req, res, next) => {
 
     };
 
-    console.log(req.body);
-    //es.send(content);
-    //res.end()
-//res.send(req.body);
-
-
     request(options)
         .then(function (response) {
 
-            res.send("ok");
-            res.end()
+            res.send("success");
         })
         .catch(function (err) {
             // Crawling failed...
             res.send(err);
-            res.end()
         });
 
 
@@ -61,11 +52,11 @@ router.get('/', (req, res, next) => {
             })
             .catch(function (err) {
                 // Crawling failed...
-                res.send({"failed": 0});
+                res.send({"failed": err.message});
             })
 
     } else {
-        res.send({"user": "no"});
+        res.send({"user": "No user"});
     }
 
 
@@ -87,8 +78,6 @@ router.get('/:id', (req, res, next) => {
         },
         json: 'true'
     };
-
-    console.log(options);
 
     request(options)
         .then(function (response) {
