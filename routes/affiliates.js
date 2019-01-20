@@ -21,11 +21,11 @@ router.post('/', (req, res, next) => {
     request(options)
         .then(function (response) {
 
-            res.send("success");
+            res.send({"Message": "Success"});
         })
         .catch(function (err) {
             // Crawling failed...
-            res.send({"error": err.message});
+            res.send({"Message": err.message});
         });
 
 
